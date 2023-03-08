@@ -213,6 +213,7 @@ class ScanSettings extends $pb.GeneratedMessage {
     ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'androidScanMode', $pb.PbFieldType.O3)
     ..pPS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'serviceUuids')
     ..aOB(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'allowDuplicates')
+    ..pPS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'macAddresses')
     ..hasRequiredFields = false
   ;
 
@@ -221,6 +222,7 @@ class ScanSettings extends $pb.GeneratedMessage {
     $core.int? androidScanMode,
     $core.Iterable<$core.String>? serviceUuids,
     $core.bool? allowDuplicates,
+    $core.Iterable<$core.String>? macAddresses,
   }) {
     final _result = create();
     if (androidScanMode != null) {
@@ -231,6 +233,9 @@ class ScanSettings extends $pb.GeneratedMessage {
     }
     if (allowDuplicates != null) {
       _result.allowDuplicates = allowDuplicates;
+    }
+    if (macAddresses != null) {
+      _result.macAddresses.addAll(macAddresses);
     }
     return _result;
   }
@@ -275,6 +280,9 @@ class ScanSettings extends $pb.GeneratedMessage {
   $core.bool hasAllowDuplicates() => $_has(2);
   @$pb.TagNumber(3)
   void clearAllowDuplicates() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.List<$core.String> get macAddresses => $_getList(3);
 }
 
 class ScanResult extends $pb.GeneratedMessage {
@@ -2184,5 +2192,66 @@ class MtuSizeResponse extends $pb.GeneratedMessage {
   $core.bool hasMtu() => $_has(1);
   @$pb.TagNumber(2)
   void clearMtu() => clearField(2);
+}
+
+class ReadRssiResult extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ReadRssiResult', createEmptyInstance: create)
+    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'remoteId')
+    ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'rssi', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  ReadRssiResult._() : super();
+  factory ReadRssiResult({
+    $core.String? remoteId,
+    $core.int? rssi,
+  }) {
+    final _result = create();
+    if (remoteId != null) {
+      _result.remoteId = remoteId;
+    }
+    if (rssi != null) {
+      _result.rssi = rssi;
+    }
+    return _result;
+  }
+  factory ReadRssiResult.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ReadRssiResult.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  ReadRssiResult clone() => ReadRssiResult()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  ReadRssiResult copyWith(void Function(ReadRssiResult) updates) => super.copyWith((message) => updates(message as ReadRssiResult)) as ReadRssiResult; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static ReadRssiResult create() => ReadRssiResult._();
+  ReadRssiResult createEmptyInstance() => create();
+  static $pb.PbList<ReadRssiResult> createRepeated() => $pb.PbList<ReadRssiResult>();
+  @$core.pragma('dart2js:noInline')
+  static ReadRssiResult getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ReadRssiResult>(create);
+  static ReadRssiResult? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get remoteId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set remoteId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasRemoteId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearRemoteId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.int get rssi => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set rssi($core.int v) { $_setSignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasRssi() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearRssi() => clearField(2);
 }
 

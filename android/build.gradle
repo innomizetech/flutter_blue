@@ -4,19 +4,19 @@ version '1.0'
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
-        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.15'
+        classpath 'com.android.tools.build:gradle:7.1.0'
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.17'
     }
 }
 
 rootProject.allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 
@@ -24,7 +24,12 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.google.protobuf'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
     defaultConfig {
         minSdkVersion 19
@@ -40,7 +45,11 @@ android {
 
 protobuf {
     protoc {
-        artifact = 'com.google.protobuf:protoc:3.11.4'
+        if (project.hasProperty('protoc_platform')) {
+            artifact = "com.google.protobuf:protoc:3.18.0:${protoc_platform}"
+        } else {
+            artifact = "com.google.protobuf:protoc:3.18.0"
+        }
     }
     generateProtoTasks {
         all().each { task ->
@@ -54,5 +63,5 @@ protobuf {
 }
 
 dependencies {
-    implementation 'com.google.protobuf:protobuf-javalite:3.11.4'
+    implementation 'com.google.protobuf:protobuf-javalite:3.18.0'
 }
